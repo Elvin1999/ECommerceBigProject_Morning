@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ECommerce.Core\ECommerce.Core.csproj" />
+    <ProjectReference Include="..\ECommerce.Entities\ECommerce.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

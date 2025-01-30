@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ECommerce.Core.Abstraction;
+using System;
 using System.Collections.Generic;
 
 namespace ECommerce.Entities.Models;
 
-public partial class Product
+public partial class Product:IEntity
 {
     public int ProductId { get; set; }
 

@@ -1,7 +1,23 @@
+using ECommerce.Business.Abstract;
+using ECommerce.Business.Concrete;
+using ECommerce.DataAccess.Abstractions;
+using ECommerce.DataAccess.Concrete.EfEntityFramework;
+using ECommerce.Entities.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var conn = builder.Configuration.GetConnectionString("Default");
+builder.Services.AddDbContext<NorthwindContext>(options =>
+{
+    options.UseSqlServer(conn);
+});
+
+builder.Services.AddScoped<IProductDal, EfProductDal>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 
