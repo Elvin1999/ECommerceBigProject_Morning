@@ -1,4 +1,5 @@
 ﻿using ECommerce.Business.Abstract;
+using ECommerce.Entities.Concrete;
 using ECommerce.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,16 @@ namespace ECommerce.UI.Controllers
             TempData.Add("message", String.Format("Your Product, {0} was added successfully to cart", productToBeAdded.ProductName));
 
             return RedirectToAction("Index", "Product", new { page = page, category = category });
+        }
+
+        public IActionResult List()
+        {
+            var cart=_cartSessionService.GetCart();
+            var model = new CartListViewModel
+            {
+                Cart = cart,
+            };
+            return View(model);
         }
     }
 }
