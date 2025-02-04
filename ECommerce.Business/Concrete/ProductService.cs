@@ -27,5 +27,10 @@ namespace ECommerce.Business.Concrete
         {
             return await _productDal.GetList(p => p.CategoryId == categoryId || categoryId == 0);
         }
+
+        public async Task<Product> GetByIdAsync(int id)
+        {
+            return await _productDal.Get(p=>p.ProductId == id);
+        }
     }
 }

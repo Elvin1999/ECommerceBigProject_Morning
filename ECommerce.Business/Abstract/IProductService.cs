@@ -10,6 +10,7 @@ namespace ECommerce.Business.Abstract
     public interface IProductService
     {
         Task<List<Product>> GetAllAsync();
-        Task<List<Product>> GetAllByCategoryAsync(int categoryId);  
+        Task<List<Product>> GetAllByCategoryAsync(int categoryId);
+        Task<Product> GetByIdAsync(int id);
     }
 }

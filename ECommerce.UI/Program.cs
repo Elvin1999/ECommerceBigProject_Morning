@@ -3,6 +3,7 @@ using ECommerce.Business.Concrete;
 using ECommerce.DataAccess.Abstractions;
 using ECommerce.DataAccess.Concrete.EfEntityFramework;
 using ECommerce.Entities.Models;
+using ECommerce.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,13 @@ builder.Services.AddDbContext<NorthwindContext>(options =>
 {
     options.UseSqlServer(conn);
 });
+
+builder.Services.AddSession();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<ICartSessionService, CartSessionService>();
 
 builder.Services.AddScoped<IProductDal, EfProductDal>();
 builder.Services.AddScoped<IProductService, ProductService>();
@@ -38,6 +46,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

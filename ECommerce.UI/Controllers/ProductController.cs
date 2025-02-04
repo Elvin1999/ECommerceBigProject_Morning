@@ -17,6 +17,7 @@ namespace ECommerce.UI.Controllers
         {
             int pageSize = 10;
             var items=await _productService.GetAllByCategoryAsync(category);
+            
             var model=new ProductListViewModel { 
                 Products = items.Skip((page-1)*pageSize).Take(pageSize).ToList(),
                 PageCount=(int)Math.Ceiling(items.Count/(double)pageSize),
