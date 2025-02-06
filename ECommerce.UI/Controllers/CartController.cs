@@ -40,5 +40,27 @@ namespace ECommerce.UI.Controllers
             };
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Complete()
+        {
+            var shippingDetailViewModel = new ShippingDetailViewModel
+            {
+                    ShippingDetails=new ShippingDetails()
+            };
+            return View(shippingDetailViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Complete(ShippingDetailViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            TempData.Add("message", $"Thank you {model.ShippingDetails.Firstname} , your order is in progress.");
+            return RedirectToAction("List");
+        }
+
     }
 }
