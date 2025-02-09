@@ -14,8 +14,9 @@
         }
         <div style="display:flex;align-items:center">
 
-            <a href="/@controller/index?category=@item.CategoryId"
+            <a id="link-@item.CategoryId" href="/@controller/index?category=@item.CategoryId"
                class="@css" style="cursor:pointer;">@item.CategoryName</a>
+            <input class="form-control" id="control-@item.CategoryId" style="display:none" />
             <i id="@item.CategoryId" onclick="SetEdit(id)" class="fa-solid fa-pen-to-square"></i>
             <div id="block-@item.CategoryId" style="display:none;align-items:center;mx-3">
                 <i class="fa-solid fa-circle-check"></i>
@@ -33,6 +34,11 @@
         editElement.style.display = "none";
         const blockElement = document.getElementById("block-" + id);
         blockElement.style.display = "flex";
-
+        const linkElement = document.getElementById("link-" + id);
+        linkElement.style.display = "none";
+        console.log("Link Element : ", linkElement.innerHTML);
+        const controlElement = document.getElementById("control-" + id);
+        controlElement.style.display = "inline-block";
+        controlElement.value = linkElement.innerHTML;
     }
 </script>
