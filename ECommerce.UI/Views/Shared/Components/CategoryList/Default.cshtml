@@ -12,8 +12,27 @@
         {
             css += " active";
         }
+        <div style="display:flex;align-items:center">
 
-        <a href="/@controller/index?category=@item.CategoryId"
-           class="@css" style="cursor:pointer;">@item.CategoryName</a>
+            <a href="/@controller/index?category=@item.CategoryId"
+               class="@css" style="cursor:pointer;">@item.CategoryName</a>
+            <i id="@item.CategoryId" onclick="SetEdit(id)" class="fa-solid fa-pen-to-square"></i>
+            <div id="block-@item.CategoryId" style="display:none;align-items:center;mx-3">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-square-xmark"></i>
+            </div>
+        </div>
+
     }
 </section>
+
+<script>
+    function SetEdit(id) {
+
+        const editElement = document.getElementById(id);
+        editElement.style.display = "none";
+        const blockElement = document.getElementById("block-" + id);
+        blockElement.style.display = "flex";
+
+    }
+</script>
