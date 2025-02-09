@@ -12,5 +12,6 @@ namespace ECommerce.Business.Abstract
         Task<List<Product>> GetAllAsync();
         Task<List<Product>> GetAllByCategoryAsync(int categoryId);
         Task<Product> GetByIdAsync(int id);
+        Task DeleteProduct(int id);
     }
 }

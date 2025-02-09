@@ -1,5 +1,8 @@
 ﻿@model CategoryListViewModel
 
+@{
+    var controller = Model.isAdmin ? "admin" : "product";
+}
 <section class="list-group">
 
     @foreach (var item in Model.Categories)
@@ -9,8 +12,8 @@
         {
             css += " active";
         }
-        <a href="/product/index?category=@item.CategoryId"
-        class="@css" style="cursor:pointer;"
-        >@item.CategoryName</a>
+
+        <a href="/@controller/index?category=@item.CategoryId"
+           class="@css" style="cursor:pointer;">@item.CategoryName</a>
     }
 </section>

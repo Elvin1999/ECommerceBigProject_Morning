@@ -4,5 +4,6 @@ namespace ECommerce.UI.Entities
 {
     public class CustomIdentityUser:IdentityUser
     {
+
     }
 }

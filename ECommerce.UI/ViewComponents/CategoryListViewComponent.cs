@@ -13,13 +13,14 @@ namespace ECommerce.UI.ViewComponents
             _categoryService = categoryService;
         }
 
-        public async Task<ViewViewComponentResult> InvokeAsync()
+        public async Task<ViewViewComponentResult> InvokeAsync(bool isAdmin=false)
         {
             var categories=await _categoryService.GetAllAsync();
             var param = HttpContext.Request.Query["category"];
             var category=int.TryParse(param, out var categoryId);
             var model = new CategoryListViewModel
             {
+                isAdmin=isAdmin,
                 Categories = categories,
                 CurrentCategory = category ? categoryId : 0,
             };

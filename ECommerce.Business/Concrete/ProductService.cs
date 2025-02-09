@@ -18,6 +18,15 @@ namespace ECommerce.Business.Concrete
             _productDal = productDal;
         }
 
+        public async Task DeleteProduct(int id)
+        {
+            var product = await _productDal.Get(p => p.ProductId == id);
+            if (product != null)
+            {
+                await _productDal.Delete(product);
+            }
+        }
+
         public async Task<List<Product>> GetAllAsync()
         {
             return await _productDal.GetList();
@@ -30,7 +39,7 @@ namespace ECommerce.Business.Concrete
 
         public async Task<Product> GetByIdAsync(int id)
         {
-            return await _productDal.Get(p=>p.ProductId == id);
+            return await _productDal.Get(p => p.ProductId == id);
         }
     }
 }
